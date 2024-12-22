@@ -13,7 +13,7 @@ This project is an implementation of the classic hangman game in Python. The obj
     python hangman.py
     ```
 3. The game will show you a word with the first letter revealed and the rest as underscores.
-4. Enter a letter that you think is in the word.
+4. Enter a letter o letter blocks that you think is in the word.
 5. You have a maximum of 6 attempts to guess the entire word.
 
 ## Special Commands

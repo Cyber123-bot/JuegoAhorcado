@@ -4,6 +4,7 @@ import time
 from style import *
 
 class HangmanGame:
+    """Simple Hangman game where the user has to guess a word by providing letters o letter blocks"""
     # Game constants
     WORDS = [
         "airport", "electric", "elephant", "highway", "education", "orchestra", "audiovisual", "university", 
