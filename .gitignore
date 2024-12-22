@@ -1,0 +1,41 @@
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+*.eggs
+
+# Logs
+*.log
+*.out
+*.err
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific ignores
+.vscode/
+.idea/
+*.iml
+
+# Environment variables
+.env
+
+# Custom ignores for the hangman game
+config.json
+highscores.json
+data/*.txt
