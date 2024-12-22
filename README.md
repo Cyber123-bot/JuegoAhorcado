@@ -22,7 +22,7 @@ This project is an implementation of the classic hangman game in Python. The obj
 - `/e`: Exit the game.
 - `/?`: Shows the game instructions.
 
-## Requirement
+## Requirements
 
 - Python 3.x
 - random module
