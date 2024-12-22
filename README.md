@@ -8,7 +8,7 @@ This project is an implementation of the classic hangman game in Python. The obj
    ```bash
    git clone https://github.com/Cyber123-bot/HangmanGame.git
    ```
-2. Run the `hangman.py` file with Python:
+2. Run the hangman.py file with Python:
     ```sh
     python hangman.py
     ```
