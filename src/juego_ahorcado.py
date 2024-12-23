@@ -5,7 +5,7 @@ from estilos import *
 
 class JuegoAhorcado:
     """Juego simple de Ahorcado donde el usuario debe adivinar una palabra proporcionando letras o bloques de letras."""
-    # Constantes del juego
+    # Constantes para las palabras y el número máximo de intentos
     PALABRAS = [
         "aeropuerto", "electrico", "elefante", "autopista", "educacion", "orquesta", "audiovisual", "universidad", 
         "incremento", "enfoque", "opinion", "aguila", "escalera", "ocasion", "asistente", "autonomo", "enfermera", 
