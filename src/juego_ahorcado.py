@@ -44,7 +44,8 @@ class JuegoAhorcado:
         
         # Si el usuario presiona Ctrl+C, salir del juego
         except KeyboardInterrupt:
-            print(color.cian + "\n\t¡Adiós!" + color.RESET)
+            print() # Salto de línea
+            print(color.cian + "\t¡Adiós!" + color.RESET)
             exit()
             
         return letra_usuario.lower()
@@ -53,7 +54,7 @@ class JuegoAhorcado:
         """ Procesa la entrada del usuario """
         # Si el usuario escribe /m, mostrar las letras usadas
         if letra_usuario == "/m":
-            print(color.cian + f"Letras usadas:", color.purpura + str(self.letras_usadas) + color.RESET)
+            print(color.cian + f"\nLetras usadas:", color.purpura + str(self.letras_usadas) + color.RESET)
             input(color.cian + "\nPresiona Enter para continuar..." + color.RESET)
             return True
         
