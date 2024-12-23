@@ -97,7 +97,7 @@ class JuegoAhorcado:
 
             else:
                 # Imprimir un mensaje si la letra ya fue mencionada
-                print(color.rojo + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
+                print(color.naranja + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
 
     def _actualizarPalabraAhorcado(self, letra):
         """ Actualiza la palabra del ahorcado con la letra adivinada correctamente """
