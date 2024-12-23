@@ -34,12 +34,12 @@ Este proyecto es una implementación del clásico juego de ahorcado en Python. E
 
 - `JuegoAhorcado`: Clase principal que gestiona la lógica del juego.
   - `__init__`: Inicializa el juego.
-  - `_inicializar_palabra_ahorcado`: Inicializa la palabra del ahorcado con guiones bajos.
-  - `_imprimir_encabezado_juego`: Imprime el encabezado del juego con las estadísticas actuales.
-  - `_obtener_entrada_usuario`: Obtiene una letra del usuario.
-  - `_procesar_entrada_usuario`: Gestiona los comandos especiales del usuario.
-  - `_procesar_adivinanza`: Procesa la letra adivinada por el usuario.
-  - `_actualizar_palabra_ahorcado`: Actualiza la palabra del ahorcado con la letra correctamente adivinada.
-  - `_imprimir_juego_perdido`: Imprime el estado del juego cuando el usuario pierde.
-  - `_imprimir_juego_ganado`: Imprime el estado del juego cuando el usuario gana.
-  - `iniciar_juego`: Inicia el juego.
+  - `_inicializarPalabraAhorcado`: Inicializa la palabra del ahorcado con guiones bajos.
+  - `_imprimirEncabezadoJuego`: Imprime el encabezado del juego con las estadísticas actuales.
+  - `_obtenerEntradaUsuario`: Obtiene una letra del usuario.
+  - `_procesarEntradaUsuario`: Gestiona los comandos especiales del usuario.
+  - `_procesarAdivinanza`: Procesa la letra adivinada por el usuario.
+  - `_actualizarPalabraAhorcado`: Actualiza la palabra del ahorcado con la letra correctamente adivinada.
+  - `_imprimirJuegoPerdido`: Imprime el estado del juego cuando el usuario pierde.
+  - `_imprimirJuegoGanado`: Imprime el estado del juego cuando el usuario gana.
+  - `iniciarJuego`: Inicia el juego.

@@ -21,23 +21,23 @@ class JuegoAhorcado:
 
     def __init__(self):
         self.palabra_seleccionada = random.choice(self.PALABRAS)
-        self.palabra_ahorcado = self._inicializar_palabra_ahorcado()
+        self.palabra_ahorcado = self._inicializarPalabraAhorcado()
         self.letras_adivinadas = 0
         self.letras_usadas = [self.palabra_seleccionada[0]]
         self.intentos = self.INTENTOS_MAXIMOS
 
-    def _inicializar_palabra_ahorcado(self):
+    def _inicializarPalabraAhorcado(self):
         """ Inicializa palabra_ahorcado con guiones bajos para todas las letras excepto la primera """
         return self.palabra_seleccionada[0] + "_" * (len(self.palabra_seleccionada) - 1)
 
-    def _imprimir_encabezado_juego(self):
+    def _imprimirEncabezadoJuego(self):
         """ Imprime el encabezado del juego con las estadísticas actuales """
         print(color.azul + "\tJUEGO DEL AHORCADO" + color.RESET)
         print(color.amarillo + "\nLetras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
         print(color.amarillo + "Intentos restantes:", color.purpura + str(self.intentos) + color.RESET)
         print(color.amarillo + "Palabra a adivinar:", color.purpura + self.palabra_ahorcado.capitalize() + color.RESET)
 
-    def _obtener_entrada_usuario(self):
+    def _obtenerEntradaUsuario(self):
         """ Obtiene una letra del usuario """
         try:
             letra_usuario = input(color.azul + "\nLetra que crees que está en la palabra [/m | /e | /?]: " + color.purpura)
@@ -49,7 +49,7 @@ class JuegoAhorcado:
             
         return letra_usuario.lower()
 
-    def _procesar_entrada_usuario(self, letra_usuario):
+    def _procesarEntradaUsuario(self, letra_usuario):
         """ Procesa la entrada del usuario """
         # Si el usuario escribe /m, mostrar las letras usadas
         if letra_usuario == "/m":
@@ -71,7 +71,7 @@ class JuegoAhorcado:
 
         return False
 
-    def _procesar_adivinanza(self, letra_usuario):
+    def _procesarAdivinanza(self, letra_usuario):
         """ Procesa la letra que el usuario adivinó """
         for letra in letra_usuario:
             # Si la letra no está en la lista de usadas y es un solo carácter
@@ -82,12 +82,12 @@ class JuegoAhorcado:
                 # Si la letra está en la palabra seleccionada
                 if letra in self.palabra_seleccionada:
                     self.letras_adivinadas += self.palabra_seleccionada.count(letra) # Incrementar el número de letras adivinadas
-                    self._actualizar_palabra_ahorcado(letra) # Actualizar la palabra del ahorcado con la letra adivinada
+                    self._actualizarPalabraAhorcado(letra) # Actualizar la palabra del ahorcado con la letra adivinada
                     print(color.verde + f"\n\tLa letra '{letra}' está en la palabra." + color.RESET)
 
                     # Imprimir un mensaje al usuario cuando gane y salir
                     if "_" not in self.palabra_ahorcado:
-                        self._imprimir_juego_ganado()
+                        self._imprimirJuegoGanado()
                         exit()
 
                 else:
@@ -99,33 +99,33 @@ class JuegoAhorcado:
                 # Imprimir un mensaje si la letra ya fue mencionada
                 print(color.rojo + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
 
-    def _actualizar_palabra_ahorcado(self, letra):
+    def _actualizarPalabraAhorcado(self, letra):
         """ Actualiza la palabra del ahorcado con la letra adivinada correctamente """
         self.palabra_ahorcado = ''.join([letra if self.palabra_seleccionada[i] == letra else self.palabra_ahorcado[i] 
                                          for i in range(len(self.palabra_seleccionada))])
 
-    def _imprimir_juego_perdido(self):
+    def _imprimirJuegoPerdido(self):
         """ Imprime el estado del juego cuando el usuario pierde """
         # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
         os.system("cls" if os.name == "nt" else "clear")
 
         # Imprimir el encabezado del juego y la palabra sin resolver.
-        self._imprimir_encabezado_juego()
+        self._imprimirEncabezadoJuego()
         print(color.amarillo + "Palabra no resuelta:", color.purpura + self.palabra_seleccionada.capitalize() + color.RESET)
         print(color.rojo + f"\n\t¡Perdiste!" + color.RESET)
 
-    def _imprimir_juego_ganado(self):
+    def _imprimirJuegoGanado(self):
         """ Imprime el estado del juego cuando el usuario gana """
         # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
         os.system("cls" if os.name == "nt" else "clear")
 
         # Imprimir el encabezado del juego y un mensaje al usuario.
-        self._imprimir_encabezado_juego()
+        self._imprimirEncabezadoJuego()
         print(color.verde + "\n\t¡Ganaste!" + color.RESET)
 
-    def iniciar_juego(self):
+    def iniciarJuego(self):
         """ Inicia el juego del ahorcado """
         while self.intentos > 0:
             # Esperar 1 segundo y limpiar la pantalla.
@@ -133,20 +133,20 @@ class JuegoAhorcado:
             os.system("cls" if os.name == "nt" else "clear")
 
             # Imprimir el encabezado del juego y obtener la entrada del usuario.
-            self._imprimir_encabezado_juego()
-            letra_usuario = self._obtener_entrada_usuario()
+            self._imprimirEncabezadoJuego()
+            letra_usuario = self._obtenerEntradaUsuario()
 
             # Si la entrada no es una letra, procesarla.
-            if self._procesar_entrada_usuario(letra_usuario):
+            if self._procesarEntradaUsuario(letra_usuario):
                 continue
 
-            self._procesar_adivinanza(letra_usuario) # Procesar la adivinanza del usuario
+            self._procesarAdivinanza(letra_usuario) # Procesar la adivinanza del usuario
 
         # Si no hay intentos y aún hay guiones en la palabra, imprimir el mensaje de pérdida
         if "_" in self.palabra_ahorcado:
-            self._imprimir_juego_perdido()
+            self._imprimirJuegoPerdido()
 
 # Inicia el juego del ahorcado
 if __name__ == "__main__":
     juego = JuegoAhorcado()
-    juego.iniciar_juego()
+    juego.iniciarJuego()
