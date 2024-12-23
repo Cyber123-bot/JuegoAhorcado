@@ -1,28 +1,28 @@
-# Contributing to HangmanGame
+# Contribuyendo a HangmanGame
 
-Thanks for your interest in contributing to HangmanGame! Here are some ways you can help:
+¡Gracias por tu interés en contribuir a JuegoAhorcado! Aquí hay algunas formas en las que puedes ayudar:
 
-## Report Issues
-If you find a bug or want to suggest a new feature, open an issue on [GitHub](https://github.com/Cyber123-bot/HangmanGame/issues).
+## Reporta Problemas
+Si encuentras un error o quieres sugerir una nueva funcionalidad, abre un problema en [GitHub](https://github.com/Cyber123-bot/JuegoAhorcado/issues).
 
-## Suggest Improvements
-If you have an idea to improve the project, open an issue or join our discussions on GitHub.
+## Sugiere Mejoras
+Si tienes una idea para mejorar el proyecto, abre un problema o únete a nuestras discusiones en GitHub.
 
-## Submit Pull Requests
-Follow these steps to submit a pull request:
-1. Clone the repository: `git clone https://github.com/Cyber123-bot/HangmanGame.git`
-2. Create a new branch: `git checkout -b feature-new`
-3. Make your changes and commit: `git commit -m "Description of changes"`
-4. Push the branch to the repository: `git push origin feature-new`
-5. Open a pull request on GitHub.
+## Envía Pull Requests
+Sigue estos pasos para enviar un pull request:
+1. Clona el repositorio: `git clone https://github.com/Cyber123-bot/JuegoAhorcado.git`
+2. Crea una nueva rama: `git checkout -b feature-nueva`
+3. Realiza tus cambios y haz commit: `git commit -m "Descripción de los cambios"`
+4. Envía la rama al repositorio: `git push origin feature-nueva`
+5. Abre un pull request en GitHub.
 
-## Improve Documentation
-If you see something missing in the documentation or think it can be improved, please submit a pull request.
+## Mejora la Documentación
+Si ves que falta algo en la documentación o crees que se puede mejorar, por favor envía un pull request.
 
-## Run Tests
-Make sure your code passes all unit tests before submitting a pull request. You can run tests with `python -m unittest`.
+## Ejecuta Pruebas
+Asegúrate de que tu código pasa todas las pruebas unitarias antes de enviar un pull request. Puedes ejecutar las pruebas con `python -m unittest`.
 
-## Contact Me
-If you have any questions, suggestions, or want to connect, feel free to reach out to me via email at [cyber123.bot@gmail.com].
+## Contacta Conmigo
+Si tienes alguna pregunta, sugerencia o quieres conectar, no dudes en escribirme por correo electrónico a [cyber123.bot@gmail.com].
 
-Thanks for contributing!
+¡Gracias por contribuir!

@@ -1,152 +1,152 @@
 import random
 import os
 import time
-from style import *
+from estilos import *
 
-class HangmanGame:
-    """Simple Hangman game where the user has to guess a word by providing letters o letter blocks"""
-    # Game constants
-    WORDS = [
-        "airport", "electric", "elephant", "highway", "education", "orchestra", "audiovisual", "university", 
-        "increase", "approach", "opinion", "eagle", "staircase", "occasion", "assistant", "autonomous", "nurse", 
-        "article", "incredible", "ideology", "revolutionary", "extraordinary", "communication", "development", 
-        "lighting", "consideration", "cooperation", "anticipation", "research", "representation", "provided",
-        "concern", "evolving", "inauguration", "experienced", "compensatory", "interesting", 
-        "responsibility", "recovery", "opportunities", "individualism", "supervision", "restoration", 
-        "celebration", "examination", "personality", "contribution", "articulation", "organization", 
-        "legitimation", "amplification", "technology", "introspection", "generalization", "dignification", 
-        "verification", "clarification", "approximation", "disintegration", "international", "automation"
+class JuegoAhorcado:
+    """Juego simple de Ahorcado donde el usuario debe adivinar una palabra proporcionando letras o bloques de letras."""
+    # Constantes del juego
+    PALABRAS = [
+        "aeropuerto", "electrico", "elefante", "autopista", "educacion", "orquesta", "audiovisual", "universidad", 
+        "incremento", "enfoque", "opinion", "aguila", "escalera", "ocasion", "asistente", "autonomo", "enfermera", 
+        "articulo", "increible", "ideologia", "revolucionario", "extraordinario", "comunicacion", "desarrollo", 
+        "iluminacion", "consideracion", "cooperacion", "anticipacion", "investigacion", "representacion", "provisto",
+        "preocupacion", "evolutivo", "inauguracion", "experimentado", "compensatorio", "interesante", 
+        "responsabilidad", "recuperacion", "oportunidades", "individualismo", "supervision", "restauracion", 
+        "celebracion", "examinacion", "personalidad", "contribucion", "articulacion", "organizacion", 
+        "legitimacion", "amplificacion", "tecnologia", "introspeccion", "generalizacion", "dignificacion", 
+        "verificacion", "clarificacion", "aproximacion", "desintegracion", "internacional", "automatizacion"
     ]
-    MAX_ATTEMPTS = 6
+    INTENTOS_MAXIMOS = 6
 
     def __init__(self):
-        self.chosen_word = random.choice(self.WORDS)
-        self.hangman_word = self._initialize_hangman_word()
-        self.guessed_letters = 0
-        self.letters_used = [self.chosen_word[0]]
-        self.attempts = self.MAX_ATTEMPTS
+        self.palabra_seleccionada = random.choice(self.PALABRAS)
+        self.palabra_ahorcado = self._inicializar_palabra_ahorcado()
+        self.letras_adivinadas = 0
+        self.letras_usadas = [self.palabra_seleccionada[0]]
+        self.intentos = self.INTENTOS_MAXIMOS
 
-    def _initialize_hangman_word(self):
-        """ Initialize hangman_word with underscores for all letters except the first """
-        return self.chosen_word[0] + "_" * (len(self.chosen_word) - 1)
+    def _inicializar_palabra_ahorcado(self):
+        """ Inicializa palabra_ahorcado con guiones bajos para todas las letras excepto la primera """
+        return self.palabra_seleccionada[0] + "_" * (len(self.palabra_seleccionada) - 1)
 
-    def _print_game_header(self):
-        """ Print the game header with current stats """
-        print(color.blue + "\tHANGMAN GAME" + color.RESET)
-        print(color.yellow + "\nGuessed letters:", color.purple + str(self.guessed_letters) + color.RESET)
-        print(color.yellow + "Remaining attempts:", color.purple + str(self.attempts) + color.RESET)
-        print(color.yellow + "Word to guess:", color.purple + self.hangman_word.capitalize() + color.RESET)
+    def _imprimir_encabezado_juego(self):
+        """ Imprime el encabezado del juego con las estadísticas actuales """
+        print(color.azul + "\tJUEGO DEL AHORCADO" + color.RESET)
+        print(color.amarillo + "\nLetras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
+        print(color.amarillo + "Intentos restantes:", color.purpura + str(self.intentos) + color.RESET)
+        print(color.amarillo + "Palabra a adivinar:", color.purpura + self.palabra_ahorcado.capitalize() + color.RESET)
 
-    def _get_user_input(self):
-        """ Get a letter from the user """
+    def _obtener_entrada_usuario(self):
+        """ Obtiene una letra del usuario """
         try:
-            char_user = input(color.blue + "\nLetter you think might be in the word [/m | /e | /?]: " + color.purple)
+            letra_usuario = input(color.azul + "\nLetra que crees que está en la palabra [/m | /e | /?]: " + color.purpura)
         
-        # If the user presses Ctrl+C, exit the game
+        # Si el usuario presiona Ctrl+C, salir del juego
         except KeyboardInterrupt:
-            print(color.cyan + "\n\tGoodbye!" + color.RESET)
+            print(color.cian + "\n\t¡Adiós!" + color.RESET)
             exit()
             
-        return char_user.lower()
+        return letra_usuario.lower()
 
-    def _handle_user_input(self, char_user):
-        """ Handle the user input and process it """
-        # If the user writes /m, show the used letters
-        if char_user == "/m":
-            print(color.cyan + f"Used letters:", color.purple + str(self.letters_used) + color.RESET)
-            input(color.cyan + "\nPress Enter to continue..." + color.RESET)
+    def _procesar_entrada_usuario(self, letra_usuario):
+        """ Procesa la entrada del usuario """
+        # Si el usuario escribe /m, mostrar las letras usadas
+        if letra_usuario == "/m":
+            print(color.cian + f"Letras usadas:", color.purpura + str(self.letras_usadas) + color.RESET)
+            input(color.cian + "\nPresiona Enter para continuar..." + color.RESET)
             return True
         
-        # If the user writes /e, exit the game
-        elif char_user == "/e":
-            print(color.cyan + "\n\tGoodbye!" + color.RESET)
+        # Si el usuario escribe /e, salir del juego
+        elif letra_usuario == "/e":
+            print(color.cian + "\n\t¡Adiós!" + color.RESET)
             exit()
 
-        elif char_user == "/?":
-            print(color.cyan + "\nYou have to guess the word by providing a letter that you think is in the word.\n" + color.RESET)
-            print(color.cyan + "If you want to see the used letters, type: /m.\n" + color.RESET)
-            print(color.cyan + "If you want to exit the game, type: /e.\n" + color.RESET)
-            input(color.cyan + "Press Enter to continue..." + color.RESET)
+        elif letra_usuario == "/?":
+            print(color.cian + "\nDebes adivinar la palabra proporcionando una letra que creas que está en la palabra.\n" + color.RESET)
+            print(color.cian + "Si quieres ver las letras usadas, escribe: /m.\n" + color.RESET)
+            print(color.cian + "Si quieres salir del juego, escribe: /e.\n" + color.RESET)
+            input(color.cian + "Presiona Enter para continuar..." + color.RESET)
             return True
 
         return False
 
-    def _process_guess(self, char_user):
-        """ Process the user's letter guess """
-        for letter in char_user:
-            # If the letter is not in the used letters list and is a single character
-            if letter not in self.letters_used and len(letter) == 1:
-                # Add the letter to the used letters list
-                self.letters_used.append(letter)
+    def _procesar_adivinanza(self, letra_usuario):
+        """ Procesa la letra que el usuario adivinó """
+        for letra in letra_usuario:
+            # Si la letra no está en la lista de usadas y es un solo carácter
+            if letra not in self.letras_usadas and len(letra) == 1:
+                # Agregar la letra a la lista de letras usadas
+                self.letras_usadas.append(letra)
 
-                # If the letter is in the chosen word
-                if letter in self.chosen_word:
-                    self.guessed_letters += self.chosen_word.count(letter) # Increase the number of guessed letters
-                    self._update_hangman_word(letter) # Update the hangman word with the correctly guessed letter
-                    print(color.green + f"\n\tThe letter '{letter}' is in the word." + color.RESET)
+                # Si la letra está en la palabra seleccionada
+                if letra in self.palabra_seleccionada:
+                    self.letras_adivinadas += self.palabra_seleccionada.count(letra) # Incrementar el número de letras adivinadas
+                    self._actualizar_palabra_ahorcado(letra) # Actualizar la palabra del ahorcado con la letra adivinada
+                    print(color.verde + f"\n\tLa letra '{letra}' está en la palabra." + color.RESET)
 
-                    # Print a message to the user when they win and exit
-                    if "_" not in self.hangman_word:
-                        self._print_won_game()
+                    # Imprimir un mensaje al usuario cuando gane y salir
+                    if "_" not in self.palabra_ahorcado:
+                        self._imprimir_juego_ganado()
                         exit()
 
                 else:
-                    # Print a message to the user if the letter is not in the word and decrease the number of attempts by 1
-                    print(color.red + f"\n\tThe letter '{letter}' is not in the word." + color.RESET)
-                    self.attempts -= 1
+                    # Imprimir un mensaje si la letra no está en la palabra y reducir intentos en 1
+                    print(color.rojo + f"\n\tLa letra '{letra}' no está en la palabra." + color.RESET)
+                    self.intentos -= 1
 
             else:
-                # Print a message to the user if the letter is already in the used letters list
-                print(color.red + f"\n\tYou already mentioned the letter '{letter}'.\n\tTo see the used ones, type: /m." + color.RESET)
+                # Imprimir un mensaje si la letra ya fue mencionada
+                print(color.rojo + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
 
-    def _update_hangman_word(self, letter):
-        """ Update the hangman word with the correctly guessed letter """
-        self.hangman_word = ''.join([letter if self.chosen_word[i] == letter else self.hangman_word[i] 
-                                     for i in range(len(self.chosen_word))])
+    def _actualizar_palabra_ahorcado(self, letra):
+        """ Actualiza la palabra del ahorcado con la letra adivinada correctamente """
+        self.palabra_ahorcado = ''.join([letra if self.palabra_seleccionada[i] == letra else self.palabra_ahorcado[i] 
+                                         for i in range(len(self.palabra_seleccionada))])
 
-    def _print_lost_game(self):
-        """ Print game status when the user loses """
-        # Wait for 0.5 seconds and clear the screen.
+    def _imprimir_juego_perdido(self):
+        """ Imprime el estado del juego cuando el usuario pierde """
+        # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
         os.system("cls" if os.name == "nt" else "clear")
 
-        # Print the game header and the unsolved word.
-        self._print_game_header()
-        print(color.yellow + "Unsolved word:", color.purple + self.chosen_word.capitalize() + color.RESET)
-        print(color.red + f"\n\tYou lost!" + color.RESET)
+        # Imprimir el encabezado del juego y la palabra sin resolver.
+        self._imprimir_encabezado_juego()
+        print(color.amarillo + "Palabra no resuelta:", color.purpura + self.palabra_seleccionada.capitalize() + color.RESET)
+        print(color.rojo + f"\n\t¡Perdiste!" + color.RESET)
 
-    def _print_won_game(self):
-        """ Print game status when the user wins """
-        # Wait for 0.5 seconds and clear the screen.
+    def _imprimir_juego_ganado(self):
+        """ Imprime el estado del juego cuando el usuario gana """
+        # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
         os.system("cls" if os.name == "nt" else "clear")
 
-        # Print the game header and a message to the user.
-        self._print_game_header()
-        print(color.green + "\n\tYou won!" + color.RESET)
+        # Imprimir el encabezado del juego y un mensaje al usuario.
+        self._imprimir_encabezado_juego()
+        print(color.verde + "\n\t¡Ganaste!" + color.RESET)
 
-    def start_game(self):
-        """ Start the Hangman game """
-        while self.attempts > 0:
-            # Wait for 1 second and clear the screen.
+    def iniciar_juego(self):
+        """ Inicia el juego del ahorcado """
+        while self.intentos > 0:
+            # Esperar 1 segundo y limpiar la pantalla.
             time.sleep(1)
             os.system("cls" if os.name == "nt" else "clear")
 
-            # Print the game header and get the user input.
-            self._print_game_header()
-            char_user = self._get_user_input()
+            # Imprimir el encabezado del juego y obtener la entrada del usuario.
+            self._imprimir_encabezado_juego()
+            letra_usuario = self._obtener_entrada_usuario()
 
-            # If the user input is not a letter, handle it.
-            if self._handle_user_input(char_user):
+            # Si la entrada no es una letra, procesarla.
+            if self._procesar_entrada_usuario(letra_usuario):
                 continue
 
-            self._process_guess(char_user) # Process the user's guess
+            self._procesar_adivinanza(letra_usuario) # Procesar la adivinanza del usuario
 
-        # If there are no attempts and there are still scripts in the word print the lost game message
-        if "_" in self.hangman_word:
-            self._print_lost_game()
+        # Si no hay intentos y aún hay guiones en la palabra, imprimir el mensaje de pérdida
+        if "_" in self.palabra_ahorcado:
+            self._imprimir_juego_perdido()
 
-# Start the Hangman game
+# Inicia el juego del ahorcado
 if __name__ == "__main__":
-    game = HangmanGame()
-    game.start_game()
+    juego = JuegoAhorcado()
+    juego.iniciar_juego()

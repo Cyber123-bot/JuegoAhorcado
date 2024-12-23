@@ -1,45 +1,45 @@
-# Hangman Game
+# Juego de Ahorcado
 
-This project is an implementation of the classic hangman game in Python. The objective of the game is to guess a secret word letter by letter before you run out of attempts.
+Este proyecto es una implementación del clásico juego de ahorcado en Python. El objetivo del juego es adivinar una palabra secreta letra por letra antes de quedarte sin intentos.
 
-## How to Play
+## Cómo Jugar
 
-1. Clone the repository:
+1. Clona el repositorio:
    ```bash
-   git clone https://github.com/Cyber123-bot/HangmanGame.git
+   git clone https://github.com/Cyber123-bot/JuegoAhorcado.git
    ```
-2. Run the hangman.py file with Python:
+2. Ejecuta el archivo `juegoahorcado.py` con Python:
     ```sh
-    python hangman.py
+    python juegoahorcado.py
     ```
-3. The game will show you a word with the first letter revealed and the rest as underscores.
-4. Enter a letter o letter blocks that you think is in the word.
-5. You have a maximum of 6 attempts to guess the entire word.
+3. El juego te mostrará una palabra con la primera letra revelada y el resto como guiones bajos.
+4. Introduce una letra o bloques de letras que creas que están en la palabra.
+5. Tienes un máximo de 6 intentos para adivinar la palabra completa.
 
-## Special Commands
+## Comandos Especiales
 
-- `/m`: Shows the letters you have already used.
-- `/e`: Exit the game.
-- `/?`: Shows the game instructions.
+- `/m`: Muestra las letras que ya has utilizado.
+- `/e`: Salir del juego.
+- `/?`: Muestra las instrucciones del juego.
 
-## Requirements
+## Requisitos
 
 - Python 3.x
-- random module
-- os module
-- time module
-- style module (must be in the same directory as `hangman.py`)
+- Módulo `random`
+- Módulo `os`
+- Módulo `time`
+- Módulo `style` (debe estar en el mismo directorio que `juegoahorcado.py`)
 
-## Code Structure
+## Estructura del Código
 
-- `HangmanGame`: Main class that handles the game logic.
-  - `__init__`: Initializes the game.
-  - `_initialize_hangman_word`: Initializes the hangman word with underscores.
-  - `_print_game_header`: Prints the game header with current statistics.
-  - `_get_user_input`: Gets a letter from the user.
-  - `_handle_user_input`: Handles special commands from the user.
-  - `_process_guess`: Processes the letter guessed by the user.
-  - `_update_hangman_word`: Updates the hangman word with the correctly guessed letter.
-  - `_print_lost_game`: Prints the game state when the user loses.
-  - `_print_won_game`: Prints the game state when the user wins.
-  - `start_game`: Starts the game.
+- `JuegoAhorcado`: Clase principal que gestiona la lógica del juego.
+  - `__init__`: Inicializa el juego.
+  - `_inicializar_palabra_ahorcado`: Inicializa la palabra del ahorcado con guiones bajos.
+  - `_imprimir_encabezado_juego`: Imprime el encabezado del juego con las estadísticas actuales.
+  - `_obtener_entrada_usuario`: Obtiene una letra del usuario.
+  - `_procesar_entrada_usuario`: Gestiona los comandos especiales del usuario.
+  - `_procesar_adivinanza`: Procesa la letra adivinada por el usuario.
+  - `_actualizar_palabra_ahorcado`: Actualiza la palabra del ahorcado con la letra correctamente adivinada.
+  - `_imprimir_juego_perdido`: Imprime el estado del juego cuando el usuario pierde.
+  - `_imprimir_juego_ganado`: Imprime el estado del juego cuando el usuario gana.
+  - `iniciar_juego`: Inicia el juego.
