@@ -146,7 +146,7 @@ class JuegoAhorcado:
         if "_" in self.palabra_ahorcado:
             self._imprimirJuegoPerdido()
 
-# Inicia el juego del ahorcado
+# Inicia el juego
 if __name__ == "__main__":
     juego = JuegoAhorcado()
     juego.iniciarJuego()
