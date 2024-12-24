@@ -1,4 +1,4 @@
-# Contribuyendo a HangmanGame
+# Contribuyendo a JuegoAhorcado
 
 ¡Gracias por tu interés en contribuir a JuegoAhorcado! Aquí hay algunas formas en las que puedes ayudar:
 
