@@ -3,10 +3,10 @@
 ¡Gracias por tu interés en contribuir a JuegoAhorcado! Aquí hay algunas formas en las que puedes ayudar:
 
 ## Reporta Problemas
-Si encuentras un error o quieres sugerir una nueva funcionalidad, abre un problema en [GitHub](https://github.com/Cyber123-bot/JuegoAhorcado/issues).
+Si encuentras un error o quieres sugerir una nueva funcionalidad, abre un issue en [GitHub](https://github.com/Cyber123-bot/JuegoAhorcado/issues).
 
 ## Sugiere Mejoras
-Si tienes una idea para mejorar el proyecto, abre un problema o únete a nuestras discusiones en GitHub.
+Si tienes una idea para mejorar el proyecto, abre un issue o contactame.
 
 ## Envía Pull Requests
 Sigue estos pasos para enviar un pull request:
