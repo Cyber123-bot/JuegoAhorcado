@@ -1,6 +1,6 @@
-# Juego de Ahorcado
+# Juego del Ahorcado
 
-Este proyecto es una implementación del clásico juego de ahorcado en Python. El objetivo del juego es adivinar una palabra secreta letra por letra antes de quedarte sin intentos.
+Este proyecto es una implementación del clásico juego de ahorcado en Python. El objetivo del juego es adivinar una palabra secreta letra por letra (o por bloques de letras) antes de quedarte sin intentos.
 
 ## Cómo Jugar
 
@@ -8,7 +8,7 @@ Este proyecto es una implementación del clásico juego de ahorcado en Python. E
    ```bash
    git clone https://github.com/Cyber123-bot/JuegoAhorcado.git
    ```
-2. Ejecuta el archivo `juegoahorcado.py` con Python:
+2. Ejecuta el archivo `juego_ahorcado.py` con Python:
     ```sh
     python juegoahorcado.py
     ```
