@@ -63,8 +63,9 @@ class JuegoAhorcado:
             print(color.cian + "\n\t¡Adiós!" + color.RESET)
             exit()
 
+        # Si el usuario escribe /?, muestra la forma de juegar
         elif letra_usuario == "/?":
-            print(color.cian + "\nDebes adivinar la palabra proporcionando una letra que creas que está en la palabra.\n" + color.RESET)
+            print(color.cian + "\nDebes adivinar la palabra proporcionando una letra (o bloques de letras) que creas que está en la palabra.\n" + color.RESET)
             print(color.cian + "Si quieres ver las letras usadas, escribe: /m.\n" + color.RESET)
             print(color.cian + "Si quieres salir del juego, escribe: /e.\n" + color.RESET)
             input(color.cian + "Presiona Enter para continuar..." + color.RESET)
