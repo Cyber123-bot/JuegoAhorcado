@@ -30,6 +30,9 @@ Este proyecto es una implementación del clásico juego de ahorcado en Python. E
 - Módulo `time`
 - Módulo `style` (debe estar en el mismo directorio que `juegoahorcado.py`)
 
+## Testeo
+Para asegurarte de que todo funciona correctamente puedes ejecutar el archivo `src/test.py`
+
 ## Estructura del Código
 
 - `JuegoAhorcado`: Clase principal que gestiona la lógica del juego.
