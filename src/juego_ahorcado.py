@@ -28,7 +28,22 @@ class JuegoAhorcado:
 
     def _inicializarPalabraAhorcado(self):
         """ Inicializa palabra_ahorcado con guiones bajos para todas las letras excepto la primera """
-        return self.palabra_seleccionada[0] + "_" * (len(self.palabra_seleccionada) - 1)
+        # Variables para la primera letra y la palabra
+        primera_letra = self.palabra_seleccionada[0].lower()
+        palabra = ""
+
+        # Recorremos letra por letra
+        for letra in self.palabra_seleccionada:
+
+            # Comprobamos si la letra es igual a la primera letra
+            if letra.lower() == primera_letra:
+                palabra += letra # Añadimos la letra sin cambios a "palabra"
+
+            else:
+                palabra += "_" # Añadimos un guión a "palabra"
+
+        return palabra # Retornar la palabra con los guiones bajos
+                
 
     def _imprimirEncabezadoJuego(self):
         """ Imprime el encabezado del juego con las estadísticas actuales """
