@@ -3,6 +3,10 @@ import os
 import time
 from estilos import *
 
+# !
+# ! Añadir opción de rendirse 
+# !
+
 class JuegoAhorcado:
     """Juego simple de Ahorcado donde el usuario debe adivinar una palabra proporcionando letras o bloques de letras."""
     # Constantes para las palabras y el número máximo de intentos
