@@ -21,6 +21,7 @@ Este proyecto es una implementación del clásico juego de ahorcado en Python. E
 - `/m`: Muestra las letras que ya has utilizado.
 - `/e`: Salir del juego.
 - `/?`: Muestra las instrucciones del juego.
+- `/r`: Sale del juego, pero muestra información como: la palabra que debía adivinar, los intentos...
 
 ## Requisitos
 
@@ -37,6 +38,7 @@ Para asegurarte de que todo funciona correctamente puedes ejecutar el archivo `s
 
 - `JuegoAhorcado`: Clase principal que gestiona la lógica del juego.
   - `__init__`: Inicializa el juego.
+  - `_limpiar_terminal`: Limpia la terminal (compatibla en linux, windows y mac).
   - `_inicializarPalabraAhorcado`: Inicializa la palabra del ahorcado con guiones bajos.
   - `_imprimirEncabezadoJuego`: Imprime el encabezado del juego con las estadísticas actuales.
   - `_obtenerEntradaUsuario`: Obtiene una letra del usuario.
