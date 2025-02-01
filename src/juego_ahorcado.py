@@ -30,6 +30,10 @@ class JuegoAhorcado:
         self.letras_usadas = [self.palabra_seleccionada[0]]
         self.intentos = self.INTENTOS_MAXIMOS
 
+    def _limpiar_terminal(self):
+        ''' Función para limpiar la terminal '''
+        os.system("cls" if os.name == "nt" else "clear")
+
     def _inicializarPalabraAhorcado(self):
         """ Inicializa palabra_ahorcado con guiones bajos para todas las letras excepto la primera """
         # Variables para la primera letra y la palabra
@@ -52,14 +56,14 @@ class JuegoAhorcado:
     def _imprimirEncabezadoJuego(self):
         """ Imprime el encabezado del juego con las estadísticas actuales """
         print(color.azul + "\tJUEGO DEL AHORCADO" + color.RESET)
-        print(color.amarillo + "\nLetras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
+        print(color.amarillo + "\nNúmero de letras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
         print(color.amarillo + "Intentos restantes:", color.purpura + str(self.intentos) + color.RESET)
         print(color.amarillo + "Palabra a adivinar:", color.purpura + self.palabra_ahorcado.capitalize() + color.RESET)
 
     def _obtenerEntradaUsuario(self):
         """ Obtiene una letra del usuario """
         try:
-            letra_usuario = input(color.azul + "\nLetra que crees que está en la palabra [/m | /e | /?]: " + color.purpura)
+            letra_usuario = input(color.azul + "\nLetra que crees que está en la palabra [/m | /e | /r | /?]: " + color.purpura)
         
         # Si el usuario presiona Ctrl+C, salir del juego
         except KeyboardInterrupt:
@@ -82,13 +86,23 @@ class JuegoAhorcado:
             print(color.cian + "\n\t¡Adiós!" + color.RESET)
             exit()
 
-        # Si el usuario escribe /?, muestra la forma de juegar
+        # Si el usuario escribe /?, muestra la forma de jugar
         elif letra_usuario == "/?":
             print(color.cian + "\nDebes adivinar la palabra proporcionando una letra (o bloques de letras) que creas que está en la palabra.\n" + color.RESET)
             print(color.cian + "Si quieres ver las letras usadas, escribe: /m.\n" + color.RESET)
             print(color.cian + "Si quieres salir del juego, escribe: /e.\n" + color.RESET)
             input(color.cian + "Presiona Enter para continuar..." + color.RESET)
             return True
+        
+        # Si el usuario escribe /r, sale pero mostrando la palabra y demás datos
+        elif letra_usuario == "/r":
+            self._limpiar_terminal()
+            print(color.azul + "\tJUEGO DEL AHORCADO" + color.RESET)
+            print(color.amarillo + "\nNúmero de letras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
+            print(color.amarillo + "Intentos:", color.purpura + str(self.intentos) + color.RESET)
+            print(color.amarillo + "Palabra:", color.purpura + self.palabra_seleccionada.capitalize() + color.RESET)
+            print(color.cian + f"\n\t¡Adiós!" + color.RESET)
+            exit()
 
         return False
 
@@ -129,7 +143,7 @@ class JuegoAhorcado:
         """ Imprime el estado del juego cuando el usuario pierde """
         # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
-        os.system("cls" if os.name == "nt" else "clear")
+        self._limpiar_terminal()
 
         # Imprimir el encabezado del juego y la palabra sin resolver.
         self._imprimirEncabezadoJuego()
@@ -140,7 +154,7 @@ class JuegoAhorcado:
         """ Imprime el estado del juego cuando el usuario gana """
         # Esperar 0.5 segundos y limpiar la pantalla.
         time.sleep(0.5)
-        os.system("cls" if os.name == "nt" else "clear")
+        self._limpiar_terminal()
 
         # Imprimir el encabezado del juego y un mensaje al usuario.
         self._imprimirEncabezadoJuego()
@@ -151,7 +165,7 @@ class JuegoAhorcado:
         while self.intentos > 0:
             # Esperar 1 segundo y limpiar la pantalla.
             time.sleep(1)
-            os.system("cls" if os.name == "nt" else "clear")
+            self._limpiar_terminal()
 
             # Imprimir el encabezado del juego y obtener la entrada del usuario.
             self._imprimirEncabezadoJuego()
