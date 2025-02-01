@@ -116,7 +116,7 @@ class JuegoAhorcado:
 
                 # Si la letra está en la palabra seleccionada
                 if letra in self.palabra_seleccionada:
-                    self.letras_adivinadas += self.palabra_seleccionada.count(letra) # Incrementar el número de letras adivinadas
+                    self.letras_adivinadas += 1 # Incrementar el número de letras adivinadas
                     self._actualizarPalabraAhorcado(letra) # Actualizar la palabra del ahorcado con la letra adivinada
                     print(color.verde + f"\n\tLa letra '{letra}' está en la palabra." + color.RESET)
 
