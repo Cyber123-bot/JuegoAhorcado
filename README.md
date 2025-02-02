@@ -39,6 +39,7 @@ Para asegurarte de que todo funciona correctamente puedes ejecutar el archivo `s
 - `JuegoAhorcado`: Clase principal que gestiona la lógica del juego.
   - `__init__`: Inicializa el juego.
   - `_limpiar_terminal`: Limpia la terminal (compatibla en linux, windows y mac).
+  - `_texto_animado`: Escribe el texto/frase proporcionada con un retraso entre caracter y caracter del tiempo que el usuario especifique (el tiempo predeterminado es 0.02 segundos).
   - `_inicializarPalabraAhorcado`: Inicializa la palabra del ahorcado con guiones bajos.
   - `_imprimirEncabezadoJuego`: Imprime el encabezado del juego con las estadísticas actuales.
   - `_obtenerEntradaUsuario`: Obtiene una letra del usuario.

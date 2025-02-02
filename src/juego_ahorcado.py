@@ -1,11 +1,8 @@
 import random
 import os
 import time
+import sys
 from estilos import *
-
-# !
-# ! Añadir opción de rendirse 
-# !
 
 class JuegoAhorcado:
     """Juego simple de Ahorcado donde el usuario debe adivinar una palabra proporcionando letras o bloques de letras."""
@@ -29,6 +26,15 @@ class JuegoAhorcado:
         self.letras_adivinadas = 0
         self.letras_usadas = [self.palabra_seleccionada[0]]
         self.intentos = self.INTENTOS_MAXIMOS
+
+    def _texto_animado(self, texto, velocidad=0.02):
+        ''' Función que recibe un texto y lo imprime letra por letra con retraso especificado por el usuario (predeterminado 0.03 segundos) '''
+        # Recorrer carácter por caracter el texto/frase introducida
+        for char in texto:
+            print(char, end="", flush=True)
+            time.sleep(velocidad) # Retraso
+
+        print() # Añadir salto de línea
 
     def _limpiar_terminal(self):
         ''' Función para limpiar la terminal '''
@@ -68,7 +74,7 @@ class JuegoAhorcado:
         # Si el usuario presiona Ctrl+C, salir del juego
         except KeyboardInterrupt:
             print() # Salto de línea
-            print(color.cian + "\t¡Adiós!" + color.RESET)
+            self._texto_animado(color.cian + "\t¡Adiós!" + color.RESET)
             exit()
             
         return letra_usuario.lower()
@@ -83,14 +89,15 @@ class JuegoAhorcado:
         
         # Si el usuario escribe /e, salir del juego
         elif letra_usuario == "/e":
-            print(color.cian + "\n\t¡Adiós!" + color.RESET)
+            self._texto_animado(color.cian + "\n\t¡Adiós!" + color.RESET)
             exit()
 
         # Si el usuario escribe /?, muestra la forma de jugar
         elif letra_usuario == "/?":
-            print(color.cian + "\nDebes adivinar la palabra proporcionando una letra (o bloques de letras) que creas que está en la palabra.\n" + color.RESET)
-            print(color.cian + "Si quieres ver las letras usadas, escribe: /m.\n" + color.RESET)
-            print(color.cian + "Si quieres salir del juego, escribe: /e.\n" + color.RESET)
+            self._texto_animado(color.cian + "\nDebes adivinar la palabra proporcionando una letra (o bloques de letras) que creas que está en la palabra.\n" + color.RESET)
+            self._texto_animado(color.cian + "Si quieres ver las letras usadas, escribe: /m.\n" + color.RESET)
+            self._texto_animado(color.cian + "Si quieres salir del juego, escribe: /e.\n" + color.RESET)
+            self._texto_animado(color.cian + "Si quieres rendirte, escribe: /r.\n" + color.RESET)
             input(color.cian + "Presiona Enter para continuar..." + color.RESET)
             return True
         
@@ -101,7 +108,7 @@ class JuegoAhorcado:
             print(color.amarillo + "\nNúmero de letras adivinadas:", color.purpura + str(self.letras_adivinadas) + color.RESET)
             print(color.amarillo + "Intentos:", color.purpura + str(self.intentos) + color.RESET)
             print(color.amarillo + "Palabra:", color.purpura + self.palabra_seleccionada.capitalize() + color.RESET)
-            print(color.cian + f"\n\t¡Adiós!" + color.RESET)
+            self._texto_animado(color.cian + f"\n\t¡Adiós!" + color.RESET)
             exit()
 
         return False
@@ -111,7 +118,7 @@ class JuegoAhorcado:
         for letra in letra_usuario:
             # Comprobamos si la letra es correcta
             if letra not in (chr(l) for l in range(97, 123)):
-                print(color.naranja + "\n\tSolo puedes introducir letras." + color.RESET)
+                self._texto_animado(color.naranja + "\n\tSolo puedes introducir letras." + color.RESET)
 
             # Si la letra no está en la lista de usadas y es un solo carácter
             elif letra not in self.letras_usadas and len(letra) == 1:
@@ -122,7 +129,7 @@ class JuegoAhorcado:
                 if letra in self.palabra_seleccionada:
                     self.letras_adivinadas += 1 # Incrementar el número de letras adivinadas
                     self._actualizarPalabraAhorcado(letra) # Actualizar la palabra del ahorcado con la letra adivinada
-                    print(color.verde + f"\n\tLa letra '{letra}' está en la palabra." + color.RESET)
+                    self._texto_animado(color.verde + f"\n\tLa letra '{letra}' está en la palabra." + color.RESET)
 
                     # Imprimir un mensaje al usuario cuando gane y salir
                     if "_" not in self.palabra_ahorcado:
@@ -131,12 +138,12 @@ class JuegoAhorcado:
 
                 else:
                     # Imprimir un mensaje si la letra no está en la palabra y reducir intentos en 1
-                    print(color.rojo + f"\n\tLa letra '{letra}' no está en la palabra." + color.RESET)
+                    self._texto_animado(color.rojo + f"\n\tLa letra '{letra}' no está en la palabra." + color.RESET)
                     self.intentos -= 1
 
             else:
                 # Imprimir un mensaje si la letra ya fue mencionada
-                print(color.naranja + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
+                self._texto_animado(color.naranja + f"\n\tYa mencionaste la letra '{letra}'.\n\tPara ver las usadas, escribe: /m." + color.RESET)
 
     def _actualizarPalabraAhorcado(self, letra):
         """ Actualiza la palabra del ahorcado con la letra adivinada correctamente """
@@ -152,7 +159,7 @@ class JuegoAhorcado:
         # Imprimir el encabezado del juego y la palabra sin resolver.
         self._imprimirEncabezadoJuego()
         print(color.amarillo + "Palabra no resuelta:", color.purpura + self.palabra_seleccionada.capitalize() + color.RESET)
-        print(color.rojo + f"\n\t¡Perdiste!" + color.RESET)
+        self._texto_animado(color.rojo + f"\n\t¡Perdiste!" + color.RESET)
 
     def _imprimirJuegoGanado(self):
         """ Imprime el estado del juego cuando el usuario gana """
@@ -162,7 +169,7 @@ class JuegoAhorcado:
 
         # Imprimir el encabezado del juego y un mensaje al usuario.
         self._imprimirEncabezadoJuego()
-        print(color.verde + "\n\t¡Ganaste!" + color.RESET)
+        self._texto_animado(color.verde + "\n\t¡Ganaste!" + color.RESET)
 
     def iniciarJuego(self):
         """ Inicia el juego del ahorcado """
