@@ -1,7 +1,6 @@
 import random
 import os
 import time
-import sys
 from estilos import *
 
 class JuegoAhorcado:
