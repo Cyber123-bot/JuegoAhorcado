@@ -63,7 +63,7 @@ class JuegoAhorcado:
     def _obtenerEntradaUsuario(self):
         """ Obtiene una letra del usuario """
         try:
-            letra_usuario = input(color.azul + "\nLetra que crees que está en la palabra [/m | /e | /r | /?]: " + color.purpura)
+            letra_usuario = input(color.azul + "\nEscribe una o varias letras [/m | /e | /r | /?]: " + color.purpura)
         
         # Si el usuario presiona Ctrl+C, salir del juego
         except KeyboardInterrupt:
@@ -109,8 +109,12 @@ class JuegoAhorcado:
     def _procesarAdivinanza(self, letra_usuario):
         """ Procesa la letra que el usuario adivinó """
         for letra in letra_usuario:
+            # Comprobamos si la letra es correcta
+            if letra not in (chr(l) for l in range(97, 123)):
+                print(color.naranja + "\n\tSolo puedes introducir letras." + color.RESET)
+
             # Si la letra no está en la lista de usadas y es un solo carácter
-            if letra not in self.letras_usadas and len(letra) == 1:
+            elif letra not in self.letras_usadas and len(letra) == 1:
                 # Agregar la letra a la lista de letras usadas
                 self.letras_usadas.append(letra)
 
